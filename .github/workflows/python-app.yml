@@ -42,29 +42,29 @@ jobs:
     needs: build
 
     steps:
-    - name: print txt1
-      run: echo Hello lint
+      - name: print txt1
+        run: echo Hello lint
 
   formatter:
     runs-on: ubuntu-lates
     needs: build
 
     steps:
-    - name: print txt2
-      run: echo Hello formatter
+      - name: print txt2
+        run: echo Hello formatter
 
   security:
     runs-on: ubuntu-lates
     needs: build
 
     steps:
-    - name: print txt3
-      run: echo Hello security
+      - name: print txt3
+        run: echo Hello security
 
   unittests:
     runs-on: ubuntu-lates
     needs: [lint, formatter, security]
 
     steps:
-    - name: list files
-      run: ls
+      - name: list files
+        run: ls
