@@ -3,7 +3,7 @@
 # separate static test of code: linter, formatter, security
 # separate unit tests
 
-name: Python application
+name: Python application Lab01 task4
 
 on:
   push:
@@ -36,9 +36,33 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-  job1:
-    runs-on: ubuntu-latest
-    name: lint  
-  job2:
-    runs-on: ubuntu-latest
-    name: formatter
+
+  display:
+    runs-on: ubuntu-lates
+    needs: build
+
+    steps:
+    - name: print txt
+      run: echo Hello display
+
+
+# job1:
+#    runs-on: ubuntu-latest
+#    name: lint check  
+#    run: poetry run task lint
+    
+#  job2:
+#    runs-on: ubuntu-latest
+#    name: formatter
+#    steps: 
+#    - uses: actions/checkout@v3
+
+
+
+
+ #   - name: Lint with flake8
+ #     run: |
+ #       poetry run task lint
+ #   - name: Test with pytest
+ #     run: |
+ #       poetry run task test
