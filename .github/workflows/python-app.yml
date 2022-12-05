@@ -37,32 +37,34 @@ jobs:
       run: |
         poetry install --no-root
 
-  display:
+  lint:
     runs-on: ubuntu-lates
     needs: build
 
     steps:
-    - name: print txt
-      run: echo Hello display
+    - name: print txt1
+      run: echo Hello lint
 
+  formatter:
+    runs-on: ubuntu-lates
+    needs: build
 
-# job1:
-#    runs-on: ubuntu-latest
-#    name: lint check  
-#    run: poetry run task lint
-    
-#  job2:
-#    runs-on: ubuntu-latest
-#    name: formatter
-#    steps: 
-#    - uses: actions/checkout@v3
+    steps:
+    - name: print txt2
+      run: echo Hello formatter
 
+  security:
+    runs-on: ubuntu-lates
+    needs: build
 
+    steps:
+    - name: print txt3
+      run: echo Hello security
 
+  unittests:
+    runs-on: ubuntu-lates
+    needs: [lint, formatter, security]
 
- #   - name: Lint with flake8
- #     run: |
- #       poetry run task lint
- #   - name: Test with pytest
- #     run: |
- #       poetry run task test
+    steps:
+    - name: list files
+      run: ls
