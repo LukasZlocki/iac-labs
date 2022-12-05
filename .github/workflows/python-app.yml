@@ -36,4 +36,9 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-
+  job1:
+    runs-on: ubuntu-latest
+    name: lint  
+  job2:
+    runs-on: ubuntu-latest
+    name: formatter
