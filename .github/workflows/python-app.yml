@@ -3,6 +3,8 @@
 # separate static test of code: linter, formatter, security
 # separate unit tests
 
+# Dummy Version
+
 name: Python application Lab01 task4
 
 on:
@@ -31,35 +33,35 @@ jobs:
       with:
         version: latest
         virtualenvs-create: true
-        virtualenvs-in-project: true       
+        virtualenvs-in-project: true
+        
     - name: Install dependencies
       run: |
         poetry install --no-root
- 
   lint:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: lint
+      - name: lint run
         run: poetry run task lint
 
   formatter:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: print txt2
-        run: echo Hello formatter
+      - name: formatter run
+        run: poetry run task formatte
 
   security:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: print txt3
-        run: echo Hello security
+      - name: sucurity run
+        run: poetry run task security
 
   unittests:
     runs-on: ubuntu-latest
     needs: [lint, formatter, security]
     steps:
-      - name: list files
-        run: ls
+      - name: unittest run
+        run: poetry run task test
