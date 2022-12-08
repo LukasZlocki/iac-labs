@@ -41,6 +41,7 @@ jobs:
   # poetry run task lint    
   lint:
     runs-on: ubuntu-latest
+    needs: build
     defaults:
       run:
         working-directory: ./example-app
