@@ -61,7 +61,7 @@ jobs:
       run: |
         poetry install --no-root
     - name: lint run
-      run: echo Hello lint 
+      run: poetry run task lint   
 
   # poetry run task formatter
   formatter:
