@@ -85,8 +85,8 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-      - name: formatter run
-        run: poetry run task formatter
+    - name: formatter run
+      run: poetry run task formatter
 
   # poetry run task security
   security:
@@ -110,8 +110,8 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-      - name: security run
-        run: poetry run task security
+    - name: security run
+      run: poetry run task security
 
  # poetry run task test
   unittests:
@@ -135,5 +135,5 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-      - name: task test run
-        run: poetry run task test
+    - name: task test run
+      run: poetry run task test
