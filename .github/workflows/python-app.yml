@@ -67,22 +67,73 @@ jobs:
   formatter:
     runs-on: ubuntu-latest
     needs: build
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry Action
+      uses: snok/install-poetry@v1.3.3
+      with:
+        version: latest
+        virtualenvs-create: true
+        virtualenvs-in-project: true      
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
       - name: formatter run
-        run: echo Hello formatter
+        run: poetry run task formatter
 
   # poetry run task security
   security:
     runs-on: ubuntu-latest
     needs: build
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry Action
+      uses: snok/install-poetry@v1.3.3
+      with:
+        version: latest
+        virtualenvs-create: true
+        virtualenvs-in-project: true      
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
       - name: security run
-        run: echo Hello security
+        run: poetry run task security
 
  # poetry run task test
   unittests:
     runs-on: ubuntu-latest
     needs: [lint, formatter, security]
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install Poetry Action
+      uses: snok/install-poetry@v1.3.3
+      with:
+        version: latest
+        virtualenvs-create: true
+        virtualenvs-in-project: true      
+    - name: Install dependencies
+      run: |
+        poetry install --no-root
       - name: task test run
-        run: echo test 
+        run: poetry run task test
