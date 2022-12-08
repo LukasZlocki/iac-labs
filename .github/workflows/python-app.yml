@@ -41,9 +41,17 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     needs: build
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
-      - name: lint run
-        run: poetry run task lint
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: lint run
+      run: poetry run task lint
 
   formatter:
     runs-on: ubuntu-latest
