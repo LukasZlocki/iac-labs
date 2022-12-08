@@ -4,7 +4,6 @@
 # separate unit tests
 
 # Dummy code
-# Matrix
 
 name: Python application Lab01 task4
 
@@ -19,10 +18,7 @@ permissions:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./example-app
@@ -41,10 +37,16 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/iac-labs/iac-labs/example-app/.venv
+        key: ${{ runner.os }}-venv
   
   # poetry run task lint    
   lint:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: lint run
